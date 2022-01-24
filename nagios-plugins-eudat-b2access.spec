@@ -14,7 +14,7 @@
 #   limitations under the License.
 
 Name:		nagios-plugins-eudat-b2access
-Version:	0.3
+Version:	0.4
 Release:	2%{?dist}
 Summary:	Nagios B2ACCESS probes
 License:	Apache License, Version 2.0
