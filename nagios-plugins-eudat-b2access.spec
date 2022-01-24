@@ -15,7 +15,7 @@
 
 Name:		nagios-plugins-eudat-b2access
 Version:	0.3
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Nagios B2ACCESS probes
 License:	Apache License, Version 2.0
 Packager:	Shiraz Memon <a.memon@fz-juelich.de>
@@ -59,6 +59,8 @@ install -m 755 check_b2access_simple.py %{buildroot}/%{_libexecdir}/argo-monitor
 %attr(0755,root,root) /%{_libexecdir}/argo-monitoring/probes/%{probe_namespace}/check_b2access_simple.py
 
 %changelog
+* Mon Jan 24 2022 Themis Zamani <a.memon@fz-juelich.de> - 0.4-2
+- Update the spec file requirements 
 * Tue Jun 05 2018 Shiraz Memon <a.memon@fz-juelich.de> - 0.4-1
 - Adapted to Unity v2.x.x REST API
 - More details in verbose mode
