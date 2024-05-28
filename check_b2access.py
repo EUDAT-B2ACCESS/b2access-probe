@@ -164,7 +164,10 @@ def getInfoCert(param):
         cert_txt = subprocess.check_output(["openssl", "x509", "-subject", "-noout", "-in", param.certificate])
         sub = str(cert_txt).replace("subject= ", "")
         dn = getLdapName(sub)
-        """ url = param.url+"/rest-admin/v1/resolve/x500Name/CN=Ahmed Shiraz Memon,OU=IAS-JSC,OU=Forschungszentrum Juelich GmbH,O=GridGermany,C=DE" """
+        """
+        url = param.url+"/rest-admin/v1/resolve/x500Name/CN=Ahmed Shiraz Memon,OU=IAS-JSC,\
+        OU=Forschungszentrum Juelich GmbH,O=GridGermany,C=DE"
+        """
         url = f"{param.url}/rest-admin/v1/resolve/x500Name/{dn}"
 
         print(f"url: {url}")
