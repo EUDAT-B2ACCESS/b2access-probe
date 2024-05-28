@@ -40,7 +40,9 @@ def exceptionHandler(message: str):
                 print(message, sys.exc_info()[0])
                 sys.exit(2)
             return ret
+
         return wrapper
+
     return handleExceptions
 
 
@@ -63,8 +65,8 @@ def getAccessToken(param):
         if param.verbose:
             print("Access token: " + k['access_token'])
 
-        getTokenInfo(str(param.url) + '/oauth2/tokeninfo', str(k['access_token']), param.verbose)
-        getUserInfo(str(param.url) + '/oauth2/userinfo', str(k['access_token']), param.verbose)
+        getTokenInfo(f"{str(param.url)}/oauth2/tokeninfo{str(k['access_token'])}", param.verbose)
+        getUserInfo(f"{str(param.url)}/oauth2/userinfo{str(k['access_token'])}", param.verbose)
     except ConnectionError as e:
         print("CRITICAL: Invalid Unity URL: {0}".format(e))
         sys.exit(2)
@@ -84,6 +86,8 @@ def getTokenInfo(url, token, verbose):
             print(f"\nFetching access token information from URL: {url}")
 
         entity = requests.get(url, verify=False, headers={'Authorization': 'Bearer ' + token})
+        if entity.status_code != 200:
+            raise ConnectionError(f"Fetching access token from {url} returned {entity.status_code}")
         j = entity.json()
         expire = datetime.datetime.fromtimestamp(int(j['exp'])).strftime('%Y-%m-%d %H:%M:%S')
         if verbose:
@@ -103,11 +107,13 @@ def getTokenInfo(url, token, verbose):
 def getUserInfo(url, token, verbose):
     """ Fetch user information using access token """
     try:
-        if parser_args.verbose:
+        if verbose:
             print(f"\nFetching user information based on access token, endpoint URL: {url}")
         entity = requests.get(url, verify=False, headers={'Authorization': 'Bearer ' + token})
+        if entity.status_code != 200:
+            raise ConnectionError(f"Fetching access token from {url} returned {entity.status_code}")
         j = entity.json()
-        if parser_args.verbose:
+        if verbose:
             print(
                 f"Subject: {j['sub']}\nPersistent Id: {j['unity:persistent']}\n\
                 Detailed user information: {entity.text}")

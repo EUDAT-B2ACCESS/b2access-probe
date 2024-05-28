@@ -3,3 +3,5 @@ requests-oauthlib
 urllib3
 validators
 requests
+pytest
+requests-mock
