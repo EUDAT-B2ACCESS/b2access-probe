@@ -14,7 +14,7 @@
 #   limitations under the License.
 
 Name:		nagios-plugins-eudat-b2access
-Version:	0.3
+Version:	1.0
 Release:	1%{?dist}
 Summary:	Nagios B2ACCESS probes
 License:	Apache License, Version 2.0
@@ -25,13 +25,6 @@ BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 Requires:	python
-Requires:	python-argparse
-Requires:	python-lxml
-Requires:	python-simplejson
-Requires:	python-defusedxml
-Requires:	python-httplib2
-Requires:	python-requests
-
 
 %description
 Nagios probes to check functionality of B2ACCESS Service

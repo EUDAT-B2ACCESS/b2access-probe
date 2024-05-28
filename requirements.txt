@@ -1,0 +1,5 @@
+oauthlib
+requests-oauthlib
+urllib3
+validators
+requests
