@@ -36,4 +36,4 @@ jobs:
       with:
         name: b2access-probe-py${{ matrix.python-version }}
         path: '*.tar.gz'
-        if-no-file-found: 'error'
+        if-no-files-found: 'error'
