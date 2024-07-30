@@ -12,26 +12,26 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
+%global python3_pkgversion 3.10
 
 Name:		nagios-plugins-eudat-b2access
-Version:	0.3
+Version:	1.0
 Release:	1%{?dist}
 Summary:	Nagios B2ACCESS probes
 License:	Apache License, Version 2.0
 Packager:	Shiraz Memon <a.memon@fz-juelich.de>
+URL:        https://github.com/EUDAT-B2ACCESS/b2access-probe
 
 Source:		%{name}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
-Requires:	python
-Requires:	python-argparse
-Requires:	python-lxml
-Requires:	python-simplejson
-Requires:	python-defusedxml
-Requires:	python-httplib2
-Requires:	python-requests
-
+BuildRequires:  python%{python3_pkgversion}
+BuildRequires:  python%{python3_pkgversion}-oauthlib
+BuildRequires:  python%{python3_pkgversion}-requests-oauthlib
+BuildRequires:  python%{python3_pkgversion}-urllib3
+BuildRequires:  python%{python3_pkgversion}-validators
+BuildRequires:  python%{python3_pkgversion}-requests
 
 %description
 Nagios probes to check functionality of B2ACCESS Service
@@ -55,6 +55,8 @@ install -m 755 check_b2access.py %{buildroot}/%{_libexecdir}/argo-monitoring/pro
 %attr(0755,root,root) /%{_libexecdir}/argo-monitoring/probes/%{probe_namespace}/check_b2access.py
 
 %changelog
+* Mon Jul 14 2024 Marvin Winkens <m.winkens@fz-juelich.de> - 1.0-1
+- Updated to python 3
 * Tue Jun 05 2018 Shiraz Memon <a.memon@fz-juelich.de> - 0.4-1
 - Adapted to Unity v2.x.x REST API
 - More details in verbose mode
